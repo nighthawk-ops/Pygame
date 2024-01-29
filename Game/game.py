@@ -57,8 +57,8 @@ while run:
     healthBar(playerTwo.health, 520, 20)
     
     #draw fighters
-    playerOne.drawPlayer(window,playerOne_img, 80, 468)
-    playerTwo.drawPlayer(window, playerTwo_img, 580, 468)
+    playerOne.drawPlayer(window)
+    playerTwo.drawPlayer(window)
     
     
     #Event handler

@@ -68,7 +68,7 @@ class Player():
         
     
     def attack(self, window, target):
-        self.attacking = True
+        self.attacking = True # movement will stop because attacking isn't set to false again
         hitbox = pygame.Rect(self.rect.centerx - (2 * self.rect.width * self.flip), self.rect.y, 2 * self.rect.width, self.rect.height)
         #check for contact
         if hitbox.colliderect(target.rect):           #checks for collision to determine effect
