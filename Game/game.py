@@ -20,8 +20,23 @@ def draw_bg():
     window.blit(scaledBg, (0,0))
 
 # load player images
-playerOne_img = pygame.image.load("assests/images/character/demo/action.png").convert_alpha()
-playerTwo_img = pygame.image.load("assests/images/character/demo/man.png").convert_alpha()
+playerOne_img = pygame.image.load("assests/images/character/Sasuke/sasuke101.png").convert_alpha()
+playerTwo_img = pygame.image.load("assests/images/character/Sasuke/sasuke101.png").convert_alpha()
+
+#Sprite sheet data (Steps in an animation)
+NARUTO = [4,6,2,8,6,2,1]                    # Steps in each animation sequence
+NARUTO_SIZE = (28, 35)                      # length and width of each step
+NARUTO_SCALE = 4 
+NARUTO_OFFSET = [72, 56]    
+NARUTO_DATA = [NARUTO_SIZE, NARUTO_SCALE, NARUTO_OFFSET]   # list containing data so that i can be accessed all at once
+
+
+SASUKE = [3,6,4,9,5,2,1]
+SASUKE_SIZE = (35)
+SASUKE_SCALE = 6
+SASUKE_OFFSET = [5, 10]
+SASUKE_DATA = [SASUKE_SIZE, SASUKE_SCALE, SASUKE_OFFSET]
+
 
 #Colors
 RED = (255, 0, 0)   
@@ -37,8 +52,8 @@ def healthBar(health, x, y):
     pygame.draw.rect(window, RED, (x, y, 250*ratio, 25)) 
 
 # player instances
-playerOne = Player(80, 468)
-playerTwo = Player(580, 468)
+playerOne = Player(80, 468, False, SASUKE_DATA, playerOne_img, SASUKE)
+playerTwo = Player(580, 468, True, SASUKE_DATA, playerTwo_img, SASUKE) #, SASUKE_DATA, playerTwo_img, SASUKE
 
 #Game loop
 run = True
@@ -55,6 +70,10 @@ while run:
     #draw player stats
     healthBar(playerOne.health, 20, 20)
     healthBar(playerTwo.health, 520, 20)
+    
+    #update fighter animation
+    playerOne.update()
+    playerTwo.update()
     
     #draw fighters
     playerOne.drawPlayer(window)
